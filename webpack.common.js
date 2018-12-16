@@ -15,7 +15,6 @@ module.exports = {
   },
   externals: {  // 把一个模块做成外部依赖，不会打包到 js文件中。
     jquery: 'jQuery',
-    lodash: '_'
   },
   module: {
     rules: [
