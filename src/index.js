@@ -53,6 +53,9 @@ console.log('d :', d);
 console.log('e :', e);
 console.log('f :', f);
 
+const abc = _.includes([1, 2, 3], 1);
+console.log('是否包含：：'+abc);
+
 $(function() {
   console.log('jquery');
 

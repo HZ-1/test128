@@ -65,8 +65,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'AICODER 全栈线下实习', // 默认值：Webpack App
-      filename: 'index.html', // 默认值： 'index.html'
-      template: path.resolve(__dirname, 'src/main.html'),
+      filename: 'indexMyApp.html', // 默认值： 'index.html'
+      template: path.resolve(__dirname, 'src/tempHtml.html'),
       minify: {
         collapseWhitespace: true,
         removeComments: true, // 是否移除注释

@@ -8,9 +8,14 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common');
 
 let prodConfig = {
+  entry: {
+    appIndex:'./src/index.js',
+    lodashAndAxios:['lodash','axios'],
+  },
   mode: 'production',
   output: {
-    filename: 'main.[hash].js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -52,7 +57,17 @@ let prodConfig = {
       new UglifyJsPlugin({
         cache: true, parallel: true, sourceMap: true // set to true if you want JS source maps
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+           chunks: 'initial',
+           test: 'lodashAndAxios',
+           enforce: true,
+           name: 'customChunkNameQQ',
+        }
+      }
+}
   }
 };
 
