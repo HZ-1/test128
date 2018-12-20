@@ -39,21 +39,21 @@ module.exports = {
           }, {
             loader: 'image-webpack-loader',
             options: {
-              mozjpeg: {
+              mozjpeg: {// 压缩 jpeg 的配置
                 progressive: true,
                 quality: 65
               },
-              optipng: {
+              optipng: {// 使用 imagemin-optipng 压缩 png，enable: false 为关闭
                 enabled: false
               },
-              pngquant: {
+              pngquant: {// 使用 imagemin-pngquant 压缩 png
                 quality: '65-90',
                 speed: 4
               },
-              gifsicle: {
+              gifsicle: {// 压缩 gif 的配置
                 interlaced: false
               },
-              webp: {
+              webp: {// 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
                 quality: 75
               }
             }
