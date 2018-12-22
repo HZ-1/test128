@@ -62,7 +62,7 @@ let prodConfig = {
            chunks: 'initial',
            test: 'lodashAndAxios',
            enforce: true,
-           name: 'customChunkNameQQ',
+           name: 'lodashAndAxios',
         }
       }
     }

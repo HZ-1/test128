@@ -34,7 +34,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000
+              limit: 10000,
+              name: 'image/[name]_image.[ext]'//name既可以定义文件名字，也可以定义css生成路径，占位符[ext]是扩展externals的简写指图片扩展名
             }
           }, {
             loader: 'image-webpack-loader',
