@@ -46,6 +46,7 @@ let prodConfig = {
     ]
   },
   plugins: [
+    // 更多关于开发和生产对HtmlWebpackPlugin的配置解释，请看README.md
     new HtmlWebpackPlugin({
       title: 'AICODER 全栈线下实习', // 默认值：Webpack App
       filename: 'indexMyApp.html', // 默认值： 'index.html'
