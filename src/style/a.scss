@@ -1,8 +1,8 @@
+@import './b.scss';
 $bgColor: #c00;
 
 .box {
   background-color: $bgColor;
   font-size: 30px;
-  display: flex;
   background: url('../assets/img/logo.png');
 }

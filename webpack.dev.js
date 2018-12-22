@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
 const webpack = require('webpack');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -68,7 +69,21 @@ let devConfig = {
     ]
   },
   plugins: [
-//    new BundleAnalyzerPlugin(), // 打包模块报表
+    //如果需要看这个BundleAnalyzerPlugin效果，解注这行
+//    new BundleAnalyzerPlugin(), // 打包模块报表 
+// tempHtml.html使用了ejs，里面大量运用了entry内的chunkfile已经css抽离出来的css，这些插件在开发环境无效，
+// 只在生产环境有效，这回导致ejs内很多变量没有定义，程序报错。
+// 所以，需要重写一份模板文件dev_tempHtml.html
+new HtmlWebpackPlugin({
+  title: 'AICODER 全栈线下实习', // 默认值：Webpack App
+  filename: 'indexMyApp.html', // 默认值： 'index.html'
+  template: path.resolve(__dirname, 'src/dev_tempHtml.html'),
+  minify: {
+    collapseWhitespace: true,
+    removeComments: true, // 是否移除注释
+    removeAttributeQuotes: true // 移除属性的引号
+  }
+}),
     new webpack.NamedModulesPlugin(), // 更容易查看(patch)的依赖
     new webpack.HotModuleReplacementPlugin() // 替换插件
   ]

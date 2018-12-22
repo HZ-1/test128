@@ -22,9 +22,9 @@ document.body.appendChild(divDom);
 console.log(12233333333334444444);
 
 // 发送ajax请求数据
-axios
-  .get('/api/compmsglist')
-  .then(res => console.log('res :', res));
+// axios
+//   .get('/api/compmsglist')
+//   .then(res => console.log('res :', res));
 
 class Demo {
   show() {

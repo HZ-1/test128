@@ -4,17 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>production_mode_html</title>
   <script
   src="https://code.jquery.com/jquery-3.1.0.js"
   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
   crossorigin="anonymous">
 </script>
-  <title>Document</title>
+ <% for (var key of htmlWebpackPlugin.files.css) { %>
+  <link href="<%= key %>" rel="stylesheet">
+ <% } %> 
 </head>
 <body>
-  <div id="dmo">我是模板文件自带的内容</div>
+  <div id="dmo">我是模板文件自带的内容1</div>
   <div class="box">
-    box22222
+    <!-- 这个用来打印htmlWebpackPlugin.files内的内容，可删除，注意名字一定是htmlWebpackPlugin -->
+    <% for (var key in htmlWebpackPlugin.files) { %>
+        <%= key %> : <%= JSON.stringify(htmlWebpackPlugin.files.css) %> 
+    <% } %> 
+  
   </div>
+  <div class=img>
+      <img src="${ require('./assets/img/WechatIMG92.jpeg') }"  alt="标志" />
+ </div>
+  <script
+  src="<%= htmlWebpackPlugin.files.chunks.appIndex.entry %>"></script>
+  <script
+  src="<%= htmlWebpackPlugin.files.chunks.lodashAndAxios.entry %>"></script>
+  
 </body>
 </html>
