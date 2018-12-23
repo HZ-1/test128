@@ -16,7 +16,7 @@ let devConfig = {
     hot: true, // 启用 webpack 的模块热替换特性, 这个需要配合： webpack.HotModuleReplacementPlugin插件
     contentBase: path.join(__dirname, "dist"), // 告诉服务器从哪里提供内容， 默认情况下，将使用当前工作目录作为提供内容的目录
     compress: true, // 一切服务都启用gzip 压缩
-    host: '0.0.0.0', // 指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问 0.0.0.0
+    host: '127.0.0.1', // 指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问 0.0.0.0
     port: 58080, // 端口
     open: true, // 是否打开浏览器
     overlay: { // 出现错误或者警告的时候，是否覆盖页面线上错误消息。
