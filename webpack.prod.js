@@ -68,5 +68,9 @@ let prodConfig = {
     }
   }
 };
+// 去掉common.js中的对scss与css的loader处理
+common.module.rules = common.module.rules.filter(function(item){
+  return !(item.test && ((item.test.source === '\\.scss$') || (item.test.source === '\\.css$')))
+})
 
 module.exports = merge(common, prodConfig);

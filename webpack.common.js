@@ -60,13 +60,30 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      // 原本生产和开发模式的css处理模式都不一样，不应该在公共配置中写loader处理，但这里为了展示webpack-merge如何自定义合并配置，
+      // 在这里写了多余的两个css 处理loader
+      // 在开发模式下有对这部分代码的删除过滤，在开发模式下，有对这个代码的自定义合并
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', 
+           'css-loader', 
+           'sass-loader'
+        ]
+      },
+      // 如上，多余的loader
+      {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader']
+      },
+      
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'AICODER 全栈线下实习', // 默认值：Webpack App
-      filename: 'indexMyApp.html', // 默认值： 'index.html'
+      filename: 'index.html', // 默认值： 'index.html'
       template: path.resolve(__dirname, 'src/tempHtml.html'),
       minify: {
         collapseWhitespace: true,
