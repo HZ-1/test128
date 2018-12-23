@@ -2,6 +2,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const webpack = require('webpack');
+const AutoDllPlugin = require('autodll-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let devConfig = {
@@ -70,7 +71,18 @@ let devConfig = {
   plugins: [
 //    new BundleAnalyzerPlugin(), // 打包模块报表
     new webpack.NamedModulesPlugin(), // 更容易查看(patch)的依赖
-    new webpack.HotModuleReplacementPlugin() // 替换插件
+    new webpack.HotModuleReplacementPlugin(), // 替换插件
+    new AutoDllPlugin({
+      filename: '[name]_[hash].js',
+      inject: true,
+      entry: {
+        appVendor: [
+          'axios',
+          'lodash'
+        ]
+      }
+    }),
+  
   ]
 }
 

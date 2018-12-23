@@ -67,6 +67,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'AICODER 全栈线下实习', // 默认值：Webpack App
       filename: 'index.html', // 默认值： 'index.html'
+      inject: true, //如果使用autodll-webpack-plugin,必须指定为true
       template: path.resolve(__dirname, 'src/tempHtml.html'),
       minify: {
         collapseWhitespace: true,
