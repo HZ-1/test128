@@ -14,7 +14,7 @@ let prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[hash].js',
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -47,7 +47,7 @@ let prodConfig = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name][hash].css', // 设置最终输出的文件名
-      chunkFilename: '[id][hash].css'
+      chunkFilename: '[id][chunkhash].css'
     }),
      // 使用 ParallelUglifyPlugin 并行压缩输出JS代码
      new ParallelUglifyPlugin({
@@ -81,7 +81,7 @@ let prodConfig = {
            chunks: 'initial',
            test: 'lodashAndAxios',
            enforce: true,
-           name: 'lodashAndAxios',
+           name: 'lodashAndAxios',//对应覆盖entry.chunkFilename中的name占位符[name]
         }
       }
     }
