@@ -2,6 +2,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -45,26 +46,7 @@ let devConfig = {
     rules: [
       {
         test: /\.(sc|c|sa)ss$/,
-        use: [
-          'style-loader', {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: (loader) => [require('autoprefixer')({browsers: ['> 0.15% in CN']})]
-            }
-          }, {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
+        loader: 'happypack/loader?id=handerStyle'
       }
     ]
   },
@@ -82,7 +64,26 @@ let devConfig = {
         ]
       }
     }),
-  
+
+    new HappyPack({
+      id:'handerStyle',
+      loaders:[
+        'style-loader', 
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        'postcss-loader', 
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }
+      ]
+    })
   ]
 }
 

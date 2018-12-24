@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HappyPack = require('happypack');
 
 module.exports = {
   entry: './src/index.js',
@@ -21,12 +22,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/, // 加快编译速度，不包含node_modules文件夹内容
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true
-          }
-        }
+        loader: 'happypack/loader?id=happybabel'
+       
       }, {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
         include: [path.resolve(__dirname, 'src/')],
@@ -74,6 +71,15 @@ module.exports = {
         removeComments: true, // 是否移除注释
         removeAttributeQuotes: true // 移除属性的引号
       }
+    }),
+    new HappyPack({
+      id:'happybabel',
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      }]
     }),
     new CleanWebpackPlugin(['dist'])
   ]
