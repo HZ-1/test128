@@ -12,7 +12,7 @@ let devConfig = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'inline-source-map', // 开发阶段开启 sourcemap
+  devtool: 'cheap-module-eval-source-map', // 开发阶段开启 sourcemap
   devServer: {
     clientLogLevel: 'warning', // 可能的值有 none, error, warning 或者 info（默认值)
     hot: true, // 启用 webpack 的模块热替换特性, 这个需要配合： webpack.HotModuleReplacementPlugin插件
@@ -56,7 +56,10 @@ let devConfig = {
     new webpack.HotModuleReplacementPlugin(), // 替换插件
     new AutoDllPlugin({
       filename: '[name]_[hash].js',
+      // 如果需要调试库源码，将inherit设置为true，是调试源码的尖刀利器，不过会影响rebuild速度
+      inherit: false,//当为false时，速度更快；当为true时，可以打开webpack没有压缩过的源码sourcemap调试
       inject: true,
+      debug: true,
       entry: {
         appVendor: [
           'axios',

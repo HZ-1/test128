@@ -3,11 +3,13 @@ npm start 时，如果打开页面出错，解决方式：
 - 服务器默认使用index.html，如果你自定义输出文件名，在浏览器上手写自定义文件名
 
 AutoDllPlugin (autodll-webpack-plugin)
-- 该插件可以提高rebuild速度
+- 该插件可以提高rebuild速度，所以此插件只针对开发模式
 - 要求必须要有html-webpack-plugin，且给此插件配置inject: true,
 - autodll-webpack-plugin 自身也要设置 inject:true,
 - 可以将AutoDllPlugin.entry可以看做是webpack.config.js的entry，配置了AutoDllPlugin.entry自然就形成了chunk，所以AutoDllPlugin实质之一是一次代码分离的行为。
-- 设置AutoDllPlugin.inherit:true，可以调试库源码？
+- AutoDllPlugin.inherit是调试依赖库(如react-redux)源码的尖刀利器
+      inherit设置为true，是调试源码的尖刀利器，可以调试webpack没有压缩过的依赖库源码sourcemap调试，不过会影响rebuild速度；
+      当为false时，速度更快，一般设置为false，只有在需要调试库源码时，才打开
 
 happypack
 - 其他的都好配置，就postcss-loader 比较特殊，必须要另外新建 postcss.config.js 否则报错；
