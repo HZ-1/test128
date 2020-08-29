@@ -4,22 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server --watch --config ./打包样式/webpack.config.js",
-    "build": "node ./node_modules/.bin/webpack-dev-server --config webpack.config.js"
+    "start": " ./node_modules/.bin/webpack  --watch --config ./打包样式/webpack.config.js",
+    "build": "node ./node_modules/.bin/webpack --watch --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^4.2.2",
-    "html-webpack-plugin": "^4.3.0",
     "less": "^3.12.2",
+    "css-loader": "^4.2.2",
     "less-loader": "^7.0.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "webpack-dev-server": "^3.11.0"
+   
   }
 }
